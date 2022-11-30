@@ -21,17 +21,16 @@ public class StatsAPI {
     @Autowired
     StatsService statsService;
 
+    @RequestMapping(value ="/api/web_shop/admin/number_of_status_order", method = RequestMethod.GET)
+    public StatisticOrder analyticByOrderStatus(){
+        StatisticOrder statisticOrder = statsService.getNumberOrderStatus();
+        return statisticOrder;
+    }
 
     @RequestMapping(value = "/api/web_shop/admin/revenue", method = RequestMethod.GET)
     public StatsByMonth revenueJSON() throws ParseException {
         StatsByMonth a = statsService.getStatsByDate();
         return a;
-    }
-
-    @RequestMapping(value ="/api/web_shop/admin/number_of_status_order", method = RequestMethod.GET)
-    public StatisticOrder analyticByOrderStatus(){
-        StatisticOrder statisticOrder = statsService.getNumberOrderStatus();
-        return statisticOrder;
     }
 
 }

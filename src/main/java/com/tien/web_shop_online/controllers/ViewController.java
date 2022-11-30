@@ -78,8 +78,6 @@ public class ViewController {
         return "client_page/products";
     }
 
-
-
     @RequestMapping(value = {"/index","","/","/home","trangchu"}, method = RequestMethod.GET)
     public String homePage(Model model) {
 
@@ -98,75 +96,25 @@ public class ViewController {
         model.addAttribute("women", womenCategory.get());
         model.addAttribute("kid", kidCategory.get());
 
-
         return "client_page/index";
     }
 
     @RequestMapping(value = "/contact")
     public String contactPage(Model model) {
-
         return "client_page/contact";
     }
 
     @RequestMapping(value = "/about")
     public String aboutPage(Model model) {
-
         return "client_page/about";
     }
 
     @RequestMapping(value = "/cart")
     public String cartPage(Model model) {
-
         return "client_page/cart";
     }
 
-
     // Product pages
-
-    @RequestMapping(value = "/web_shop/admin/products")
-    public String productPage(Model model) {
-        List<Product> productList = productRepository.findAll();
-        int amount = productList.size();
-        page = 1;
-        double profitValue = statsService.getProfitUpToNow();
-
-        model.addAttribute("profitValue", String.format("%,.0f", profitValue));
-        model.addAttribute("listProducts", productList);
-        model.addAttribute("amount", amount);
-        model.addAttribute("page", page);
-        return "admin_page/admin_product_product";
-    }
-
-
-    @RequestMapping(value = "/web_shop/admin/products/new")
-    public String addProductPage(Model model) {
-        Product product = new Product();
-        List<ProductCategory> listCategory = categoryRepository.findAll();
-        List<ProductBrand> listBrand = brandRepository.findAll();
-        page = 1;
-        double profitValue = statsService.getProfitUpToNow();
-
-        model.addAttribute("profitValue", String.format("%,.0f", profitValue));
-        model.addAttribute("product", product);
-        model.addAttribute("listBrand", listBrand);
-        model.addAttribute("listCategory", listCategory);
-        model.addAttribute("page", page);
-        return "admin_page/admin_product_product_add_product";
-    }
-
-    @RequestMapping(value = "/web_shop/admin/products/brands")
-    public String brandPage(Model model) {
-        List<ProductBrand> listBrand = brandRepository.findAll();
-        Integer amount = listBrand.size();
-        page = 1;
-        double profitValue = statsService.getProfitUpToNow();
-
-        model.addAttribute("profitValue", String.format("%,.0f", profitValue));
-        model.addAttribute("listBrand", listBrand);
-        model.addAttribute("amount", amount);
-        model.addAttribute("page", page);
-        return "admin_page/admin_product_brand";
-    }
 
     @RequestMapping(value = "/web_shop/admin/products/brands/new")
     public String newBrand(Model model) {
@@ -197,7 +145,56 @@ public class ViewController {
         return "admin_page/admin_product_category_form";
     }
 
+    @RequestMapping(value = "/web_shop/admin/products")
+    public String productPage(Model model) {
+        List<Product> productList = productRepository.findAll();
+        int amount = productList.size();
+        page = 1;
+        double profitValue = statsService.getProfitUpToNow();
+
+        model.addAttribute("profitValue", String.format("%,.0f", profitValue));
+        model.addAttribute("listProducts", productList);
+        model.addAttribute("amount", amount);
+        model.addAttribute("page", page);
+        return "admin_page/admin_product_product";
+    }
+
+    @RequestMapping(value = "/web_shop/admin/products/brands")
+    public String brandPage(Model model) {
+        List<ProductBrand> listBrand = brandRepository.findAll();
+        Integer amount = listBrand.size();
+        page = 1;
+        double profitValue = statsService.getProfitUpToNow();
+
+        model.addAttribute("profitValue", String.format("%,.0f", profitValue));
+        model.addAttribute("listBrand", listBrand);
+        model.addAttribute("amount", amount);
+        model.addAttribute("page", page);
+        return "admin_page/admin_product_brand";
+    }
+
+    @RequestMapping(value = "/web_shop/admin/products/new")
+    public String addProductPage(Model model) {
+        Product product = new Product();
+        List<ProductCategory> listCategory = categoryRepository.findAll();
+        List<ProductBrand> listBrand = brandRepository.findAll();
+        page = 1;
+        double profitValue = statsService.getProfitUpToNow();
+
+        model.addAttribute("profitValue", String.format("%,.0f", profitValue));
+        model.addAttribute("product", product);
+        model.addAttribute("listBrand", listBrand);
+        model.addAttribute("listCategory", listCategory);
+        model.addAttribute("page", page);
+        return "admin_page/admin_product_product_add_product";
+    }
+
     // Customer
+
+    @RequestMapping(value = "/checked")
+    public String checkedPage() {
+        return "client_page/checked";
+    }
 
     @RequestMapping(value = "/web_shop/admin/customers")
     public String adminCustomerPage(Model model) {
@@ -210,10 +207,5 @@ public class ViewController {
         model.addAttribute("page", page);
 
         return "admin_page/admin_customer";
-    }
-
-    @RequestMapping(value = "/checked")
-    public String checkedPage() {
-        return "client_page/checked";
     }
 }

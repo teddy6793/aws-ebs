@@ -43,7 +43,6 @@ public class CustomerController {
     @Autowired
     AddressService addressService;
 
-
     Integer page = 4;
 
     NumberFormat formatter = new DecimalFormat("#0,000");
@@ -264,7 +263,7 @@ public class CustomerController {
 
         //Kiểm tra giỏ hàng phải có vật phẩm
         List<OrderDetails> listOrderDetails = orderService.findByOrderId(orderId);
-        if(listOrderDetails.size() <1){
+        if(listOrderDetails.size() < 1){
             return "client_page/error_checkout";
         }
         //End
@@ -324,8 +323,8 @@ public class CustomerController {
                 "Các sản phẩm quý khách đã đặt như sau:\n";
         int no = 1;
         for(OrderDetails o: listItem){
-            body += no + ". " + o.getProductId().getName() + "\t Đơn giá: " + o.getProductId().getListPrice() +
-                    "\t Số lượng: " + o.getQuantity() + "\t Tổng cộng: " + o.getTotal() + "\n";
+            body += no + ". " + o.getProductId().getName() + "\tĐơn giá: " + o.getProductId().getListPrice() +
+                    "\tSố lượng: " + o.getQuantity() + "\tTổng cộng: " + o.getTotal() + "\n";
             no++;
         }
         double total = 0;

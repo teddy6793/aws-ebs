@@ -25,6 +25,20 @@ public class ProductController {
     @Autowired
     FeedbackService feedbackService;
 
+    @RequestMapping(value="/products/category/{id}")
+    public String showProductByCategory(@PathVariable Integer id,
+                                        Model model){
+        List<ProductCategory> productCategoryList = productService.findAllCategory();
+        Collections.reverse(productCategoryList);
+        List<Product> productList = productService.findAllByCategoryId(id);
+        Collections.reverse(productList);
+
+        model.addAttribute("productCategoryList", productCategoryList);
+        model.addAttribute("listProduct",productList);
+
+        return "client_page/products";
+    }
+
     @RequestMapping(value = "/product/single_product/{id}")
     public String singlePageProduct(@PathVariable Integer id, Model model){
         Product product = productService.findProductById(id);
@@ -37,7 +51,7 @@ public class ProductController {
         model.addAttribute("listFeedback", listFeedbacks);
         model.addAttribute("productRelate", top6ProductRelate);
         model.addAttribute("product",product);
-        
+
         return "client_page/single_product";
     }
 
@@ -51,19 +65,6 @@ public class ProductController {
 
         model.addAttribute("productCategoryList", productCategoryList);
         model.addAttribute("listProduct",searchProduct);
-
-        return "client_page/products";
-    }
-    @RequestMapping(value="/products/category/{id}")
-    public String showProductByCategory(@PathVariable Integer id,
-                                Model model){
-        List<ProductCategory> productCategoryList = productService.findAllCategory();
-        Collections.reverse(productCategoryList);
-        List<Product> productList = productService.findAllByCategoryId(id);
-        Collections.reverse(productList);
-
-        model.addAttribute("productCategoryList", productCategoryList);
-        model.addAttribute("listProduct",productList);
 
         return "client_page/products";
     }
