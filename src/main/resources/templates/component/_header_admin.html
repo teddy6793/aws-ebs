@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div th:fragment="_header_admin">
+    <header>
+        <label for="menu-toggle">
+            <span class="las la-bars"></span>
+        </label>
+        <div class="head-icons">
+            <span class="las la-search"></span>
+            <span class="las la-comment-alt"></span>
+            <span class="las la-bell"></span>
+            <div class="head-avatar">
+                <div class="avatar" style="background-image: url(/img/1.jpg)"></div>
+                <a th:href="@{'/web_shop/admin/customers/details/' + ${session.userId}}" style="color: white"><span>[[${session.fullNameUser}]]</span></a>
+            </div>
+        </div>
+    </header>
+</div>
+</body>
+</html>

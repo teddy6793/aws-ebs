@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+          rel="stylesheet"/>
+    <title>Khách hàng</title>
+    <link rel="icon" th:href="@{/img/logo-icon-dark.png}"/>    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/css/templatemo-hexashop.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/owl-carousel.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/lightbox.css}"/>
+    <!-- UIkit CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/css/uikit.min.css" rel="stylesheet"/>
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit-icons.min.js"></script>
+</head>
+<body>
+<div id="layer"></div>
+<div th:insert="~{component/_header :: header}">Header</div>
+<!-- ***** Main Banner Area Start ***** -->
+<div class="page-heading about-page-heading" id="top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="inner-content">
+                    <h2>Thông tin</h2>
+                    <span>Thông tin cá nhân của quý khách</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Main Banner Area End ***** -->
+<section class="main-contain">
+    <div class="container">
+        <div class="form-container">
+            <div class="title-container">
+                <h1>Thông tin cá nhân</h1>
+            </div>
+            <form action="/update_customer" class="form-group" th:object="${customer}">
+                <input th:field="*{id}" type="hidden">
+                <div class="row form-component">
+                    <div class="col-10">
+                        <label class="" for="firstName">Họ<span style="color: red"> *</span></label>
+                        <input class="uk-input" id="firstName" name="firstName" required
+                               th:field="*{firstName}" type="text"/>
+                    </div>
+                </div>
+                <div class="row form-component">
+                    <div class="col-10">
+                        <label for="lastname">Tên<span style="color: red"> *</span></label>
+                        <input class="uk-input" id="lastName" name="lastName" required th:field="*{lastName}"
+                               type="text"/>
+                    </div>
+                </div>
+                <div class="row form-component">
+                    <div class="col-10">
+                        <label class="" for="email">E-mail<span style="color: red"> *</span></label>
+                        <input class="uk-input" id="email" name="email" required th:field="*{email}" type="email"/>
+                    </div>
+                </div>
+                <div class="row form-component">
+                    <div class="col-10">
+                        <label class="" for="phone">Số điện thoại<span style="color: red"> *</span></label>
+                        <input class="uk-input" id="phone" name="phone" required th:field="*{phone}" type="tel"/>
+                    </div>
+                </div>
+                <div class="row form-component">
+                    <div class="col-10">
+                        <label class="" for="job">Công việc</label>
+                        <input class="uk-input" id="job" name="job" required th:field="*{job}" type="text"/>
+                    </div>
+                </div>
+                <input th:field="*{role}" type="hidden">
+                <input id="password-main" th:field="*{password}" type="hidden">
+                <div class="row form-component">
+                    <div class="col-10">
+                        <div class="uk-text-right">
+                            <div class="uk-button uk-button-default" type="button" uk-toggle="target: #modal-example">
+                                Đổi
+                                mật khẩu
+                            </div>
+                            <input class="uk-button uk-button-primary" id="submit" name="submit" type="submit"
+                                   value="Lưu"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<div id="modal-example" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Đổi mật khẩu</h2>
+        <form action="/change_password" id="form-password-change" method="post" th:object="${customer}">
+            <input th:field="*{id}" type="hidden">
+            <input th:field="*{firstName}" type="hidden">
+            <input th:field="*{lastName}" type="hidden">
+            <input th:field="*{email}" type="hidden">
+            <input th:field="*{role}" type="hidden">
+            <input th:field="*{job}" type="hidden">
+            <input th:field="*{phone}" type="hidden">
+            <input id="password" th:field="*{password}" type="hidden">
+            <div class="row form-component">
+                <div class="col-8">
+                    <label for="password-old">Mật khẩu cũ<span style="color: red"> *</span></label>
+                    <input class="uk-input" id="password-old" name="password-old" required type="password"/>
+                </div>
+            </div>
+            <div class="row form-component">
+                <div class="col-8">
+                    <label for="password-new">Mật khẩu mới<span style="color: red"> *</span></label>
+                    <input class="uk-input" id="password-new" name="password-new" required type="password"/>
+                </div>
+            </div>
+            <div class="row form-component">
+                <div class="col-8">
+                    <label for="password-onfirm">Nhập lại mật khẩu mới<span
+                            style="color: red"> *</span></label>
+                    <input class="uk-input" id="password-confirm" name="password-confirm" required type="password"/>
+                </div>
+            </div>
+        </form>
+        <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Hủy</button>
+            <button class="uk-button uk-button-primary" onclick="changePassword();">Lưu</button>
+        </p>
+    </div>
+</div>
+<!-- ***** Products Area Ends ***** -->
+<div th:replace="~{component/footer :: footer}">Footer</div>
+<!-- jQuery -->
+<script th:src="@{/assets/js/jquery-2.1.0.min.js}" type="text/javascript"></script>
+
+<!-- Bootstrap -->
+<script th:src="@{/assets/js/popper.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}" type="text/javascript"></script>
+
+<!-- Plugins -->
+<script th:src="@{/assets/js/owl-carousel.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/accordions.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/datepicker.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/scrollreveal.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/waypoints.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/jquery.counterup.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/imgfix.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/slick.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/lightbox.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/isotope.js}" type="text/javascript"></script>
+
+<!-- Global Init -->
+<script th:src="@{/assets/js/custom.js}" type="text/javascript"></script>
+<script>
+    $(function () {
+        var selectedClass = "";
+        $("p").click(function () {
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+            $("#portfolio div")
+                .not("." + selectedClass)
+                .fadeOut();
+            setTimeout(function () {
+                $("." + selectedClass).fadeIn();
+                $("#portfolio").fadeTo(50, 1);
+            }, 500);
+        });
+    });
+
+    function changePassword() {
+        const passwordMain = document.getElementById("password").value
+        const passwordOld = document.getElementById("password-old").value
+        const passwordNew = document.getElementById("password-new").value
+        const passwordConfirm = document.getElementById("password-confirm").value
+
+        console.log("Password: " + document.getElementById("password-new").value)
+        console.log("PasswordC: " + document.getElementById("password-confirm").value)
+
+        if (passwordOld != passwordMain) {
+            UIkit.notification({
+                message: 'Mật khẩu cũ không đúng!',
+                status: 'warning',
+                pos: 'top-center',
+                timeout: 1500
+            });
+        } else {
+            if (passwordNew == passwordConfirm) {
+                document.getElementById("password").value = passwordNew;
+                document.getElementById("form-password-change").submit();
+            } else {
+                UIkit.notification({
+                    message: 'Mật khẩu xác thực không đúng!',
+                    status: 'warning',
+                    pos: 'top-center',
+                    timeout: 1500
+                });
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/img/icon_page.png"/>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="/style/style.css" />
+    <title>Admin Dashboard</title>
+</head>
+<body>
+<div class="page-wrapper">
+    <input type="checkbox" name="" id="menu-toggle" />
+    <!--Side bar    -->
+    <div th:replace="~{component/sidebar :: sidebar}"></div>
+    <!-- Side bar end    -->
+    <div class="main-content">
+        <div th:replace="~{component/_header_admin :: _header_admin}"></div>
+        <main>
+            <div class="page-header">
+                <h1>Quản lí thông tin người dùng</h1>
+                <small>Chúc các bạn một ngày tốt lành!</small>
+            </div>
+            <div class="table-product-container">
+                <div class="card table-products-alls">
+                    <div class="card-head">
+                        <div class="product-head">
+                            <div>
+                                <h3>Khách hàng</h3>
+                                <small>Thông tin chi tiết khách hàng</small>
+                                <div th:if="${message}" class="alert alert-success text-center">
+                                    [[${message}]]
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Họ và tên</th>
+                                <th>Công việc</th>
+                                <th>Số điện thoại</th>
+                                <th>E-mail</th>
+                                <th>Vai trò</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <th:block th:each="c : ${listCustomer}">
+                                    <tr class="customer-info-item">
+                                        <td class="customer-id">
+                                            <p>[[${c.id}]]</p>
+                                        </td>
+                                        <td class="customer-name">
+                                            <p>[[${c.firstName}]] [[${c.lastName}]]</p>
+                                        </td>
+                                        <td class="customer-job">
+                                            <p>[[${c.job}]]</p>
+                                        </td>
+                                        <td class="customer-phone">
+                                            <p>[[${c.phone}]]</p>
+                                        </td>
+                                        <td class="customer-email">
+                                            <p>[[${c.email}]]</p>
+                                        </td>
+                                        <td class="customer-role">
+                                            <div th:if="${c.role}">
+                                                <p>[[${c.role.name}]]</p>
+                                            </div>
+                                            <div th:unless="${c.role}">
+                                                <p>Đang cập nhật</p>
+                                            </div>
+                                        </td>
+                                        <td class="action-customer">
+                                            <a th:href="@{${'/web_shop/admin/customers/details/' + c.id}}" class="btn btn-main bg-success">Chi tiết</a>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

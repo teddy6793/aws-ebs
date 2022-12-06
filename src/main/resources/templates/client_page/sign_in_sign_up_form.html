@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập & Đăng ký</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background: #03a9f4;
+            transition: 0.5s;
+        }
+
+        body.active {
+            background: #f43648;
+        }
+
+        .container {
+            position: relative;
+            width: 800px;
+            height: 800px;
+            margin: 20px;
+        }
+        .blueBg {
+            display: flex;
+            position: absolute;
+            top: 190px;
+            width: 100%;
+            height: 350px;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 45px rgba(0, 0, 0, 0.15);
+        }
+        .blueBg .box {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .blueBg .box h2 {
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .blueBg .box button {
+            cursor: pointer;
+            padding: 10px 20px;
+            background: #fff;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+        }
+        .formBx {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 85%;
+            background: #fff;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 45px rgba(0, 0, 0, 0.25);
+            transition: 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .formBx.active {
+            left: 50%;
+        }
+
+        .formBx .form {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            padding: 50px;
+            transition: 0.5s;
+        }
+
+        .formBx .signinForm {
+            transition-delay: 0.25s;
+        }
+
+        .formBx.active .signinForm {
+            left: -100%;
+            transition-delay: 0s;
+        }
+
+        .formBx .signupForm {
+            left: 100%;
+            transition-delay: 0s;
+        }
+
+        .formBx.active .signupForm {
+            left: 0;
+            transition-delay: 0.25s;
+        }
+
+        .formBx .form form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .formBx .form form h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .formBx .form form input {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 10px;
+            outline: none;
+            font-size: 16px;
+            border: 1px solid #333;
+        }
+        .formBx .form form input[type="submit"] {
+            text-align: center;
+            background: #03a9f4;
+            border: none;
+            color: #fff;
+            max-width: 130px;
+            cursor: pointer;
+        }
+        .formBx .form form .btn-sign-up {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #03a9f4;
+            border: none;
+            color: #fff;
+            max-width: 130px;
+            height: 50px;
+            cursor: pointer;
+        }
+
+        .formBx .form form .forgot {
+            color: #333;
+        }
+
+        .formBx.active .signupForm input[type="submit"] {
+            background: #f43648;
+        }
+        .formBx.active .signupForm .btn-sign-up {
+            text-align: center;
+            background: #f43648;
+        }
+
+        #message{
+            color: #c82333;
+        }
+
+        @media (max-width: 991px) {
+            .container {
+                max-width: 400px;
+                height: 850px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .container .blueBg {
+                top: 0;
+                height: 100%;
+            }
+            .formBx {
+                width: 100%;
+                /*height: 500px;*/
+                height: 700px;
+                top: 0;
+                box-shadow: none;
+            }
+            .blueBg .box {
+                position: absolute;
+                width: 100%;
+                height: 150px;
+                bottom: 0;
+            }
+            .box.signin {
+                top: 0;
+            }
+            .formBx.active {
+                left: 0;
+                top: 150px;
+            }
+        }
+    </style>
+    <link rel="icon" th:href="@{/img/logo-icon-dark.png}"/></head>
+<body>
+<div class="header">
+    <div class="header-logo">
+        <a th:href="@{/index}" class="logo">
+            <img th:src="@{/assets/images/logo-white-id.png}">
+        </a>
+    </div>
+    <div><h5 style="color: white" th:if="${messageSuccess}">[[${messageSuccess}]]</h5></div>
+</div>
+<div class="container">
+    <div class="blueBg">
+        <div class="box signin">
+            <h2>Bạn đã có tài khoản?</h2>
+            <button class="signinBtn">Đăng nhập</button>
+        </div>
+        <div class="box signup">
+            <h2>Bạn chưa có tài khoản?</h2>
+            <button class="signupBtn">Đăng ký</button>
+        </div>
+    </div>
+    <div class="formBx">
+        <div class="form signinForm">
+            <form method="get" action="/sign_in">
+                <h3>Đăng nhập</h3>
+                <input type="email" placeholder="Email" name="email" required/>
+                <input type="password" placeholder="Password" name="password" required/>
+                <div th:if="${message}">
+                    <p style="color: red;">[[${message}]]</p>
+                </div>
+                <input type="submit" value="Đăng nhập" />
+                <a href="/input_forgot_password" class="forgot">Quên mật khẩu?</a>
+            </form>
+        </div>
+
+        <div class="form signupForm">
+            <form method="post" action="/sign_up" id="form-sign-up" th:object="${customer}">
+                <input type="hidden" name="id" th:field="*{id}">
+                <h3>Đăng ký</h3>
+                <input id="email-sign-up" type="email" placeholder="Email" name="email" th:field="*{email}" required/>
+                <input id="firstname-sign-up" type="text" placeholder="Họ" name="firstName" th:field="*{firstName}" required/>
+                <input id="lastname-sign-up" type="text" placeholder="Tên" name="lastName" th:field="*{lastName}" required/>
+                <input id="job-sign-up" type="text" placeholder="Công việc" name="job" th:field="*{job}" required/>
+                <input id="phone-sign-up" type="tel" placeholder="Số điện thoại" name="phone" th:field="*{phone}" required/>
+                <input id="password-sign-up" type="password" placeholder="Mật khẩu" name="password" th:field="*{password}" required/>
+                <input id="password-sign-up-confirm" type="password" placeholder="Nhập lại mật khẩu" />
+                <div><p id="message"></p></div>
+                <div class="btn-sign-up" onclick="submitSignUp();">Đăng ký</div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    const signinBtn = document.querySelector(".signinBtn");
+    const signupBtn = document.querySelector(".signupBtn");
+    const formBx = document.querySelector(".formBx");
+    const body = document.querySelector("body");
+    signupBtn.onclick = function () {
+        formBx.classList.add("active");
+        body.classList.add("active");
+    };
+    signinBtn.onclick = function () {
+        formBx.classList.remove("active");
+        body.classList.remove("active");
+    };
+</script>
+<script type="text/javascript" th:src="@{/js/account.js}"></script>
+</body>
+</html>

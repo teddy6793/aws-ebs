@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          name="viewport"/>
+    <link
+            href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+            rel="stylesheet"/>
+    <title>[[${product.name}]]</title>
+    <link rel="icon" th:href="@{/img/logo-icon-dark.png}"/>    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}"
+          type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.css}"
+          type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/css/templatemo-hexashop.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/owl-carousel.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/lightbox.css}"/>
+    <style>
+        .comment-item{
+            border: 0.5px solid #8492a6;
+            border-radius: 20px;
+        }
+    </style>
+    <!-- UIkit CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/css/uikit.min.css" rel="stylesheet"/>
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit-icons.min.js"></script>
+</head>
+
+<body>
+
+<!-- ***** Header Area End ***** -->
+<div th:insert="~{component/header :: header}">Header</div>
+<!-- ***** Main Banner Area Start ***** -->
+<div class="page-heading" id="top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="inner-content">
+                    <h2>[[${product.name}]]</h2>
+                    <span style="text-decoration: none;"><a
+                            style="color: white" th:href="@{/home}">Trang chủ</a> > <a
+                            style="color: white" th:href="@{/products}">Sản phẩm</a> > <a
+                            style="color: white" th:href="@{/}">[[${product.categoryId.name}]]</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Main Banner Area End ***** -->
+
+<!-- ***** Product Area Starts ***** -->
+<section class="section" id="product">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="left-images">
+                    <img
+                            alt=""
+                            th:src="@{'/api/products/resources/images/' + ${product.thumbnailPhoto}}"/>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="right-content">
+                    <h4>[[${product.name}]]</h4>
+                    <small id="listPrice" style="display: none">[[${product.listPrice}]]</small>
+                    <span class="price">[[${#numbers.formatDecimal(product.listPrice,
+							0, 'COMMA', 0, 'POINT')}]] VNĐ</span>
+                    <ul class="stars">
+                        <th:block th:each="i: ${#numbers.sequence(1, product.rate)}">
+                            <li><i class="fa fa-star"></i></li>
+                        </th:block>
+                    </ul>
+                    <span>Mô tả</span>
+                    <div class="quote">
+                        <i class="fa fa-quote-left"></i>
+                        <p>[[${product.description}]]</p>
+                    </div>
+                    <div class="quantity-content">
+                        <div class="left-content">
+                            <h6>Số lượng</h6>
+                        </div>
+                        <div class="right-content">
+                            <div class="quantity buttons_added">
+                                <input class="minus" type="button" value="-"/><input
+                                    class="input-text qty text" id="quantity" inputmode="" max="" min="1"
+                                    name="quantity" pattern="" size="4"
+                                    step="1" title="Qty" type="number" value="1"/><input
+                                    class="plus" type="button" value="+"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="total">
+                        <h4 id="total">Tổng:
+                            [[${#numbers.formatDecimal(product.listPrice, 0, 'COMMA', 0,
+                            'POINT')}]] ₫</h4>
+                        <br>
+                        <div
+                                class="main-border-button"
+                                th:onclick="addProductToCartAndQuantity([[${product.id}]]);">
+                            <a>Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 	Bình luận sản phẩm -->
+<section class="section" id="women">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-heading">
+                    <h2>Bình luận</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12" id="comment-container">
+                <div th:if="${listFeedback}">
+                    <th:block th:each="f : ${listFeedback}">
+                        <div class="comment-item">
+                            <div class="comment-image">
+                                <img style="width: 100px; height: 110px; margin: 18px 10px 0 13px" th:src="@{https://cdn-icons-png.flaticon.com/512/1789/1789313.png}">
+                            </div>
+                            <div class="comment-content">
+                                <div class="name-customer">
+                                    <h4>[[${f.customerId.firstName}]]
+                                        [[${f.customerId.lastName}]]</h4>
+                                </div>
+                                <div class="comment-content-text">
+                                    <p>[[${f.content}]]</p>
+                                </div>
+                                <div class="comment-date">
+                                    <span>[[${f.modifiedDate}]]</span>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="comment-form">
+            <div class="comment-input" id="commment-input">
+                <input id="productId" name="productId" th:value="${product.id}"
+                       type="hidden">
+                <textarea class="form-control input" id="comment"
+                          name="comment"
+                          placeholder="Viết bình luận..."
+                          style="max-width: 1519px; height: 100px"></textarea>
+            </div>
+            <div class="button-submit">
+                <button id="button-comment"
+                        th:onclick="comment([[${product.id}]]);">Bình luận
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<!-- 	Các sản phẩm liên quan -->
+<section class="section" id="women">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-heading">
+                    <h2>Các sản phẩm liên quan</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="women-item-carousel">
+                    <div class="owl-women-item owl-carousel">
+                        <th:block th:each="p : ${productRelate}">
+                            <div class="item">
+                                <div class="thumb">
+                                    <div class="hover-content">
+                                        <ul>
+                                            <li><a
+                                                    th:href="@{'/product/single_product/' + ${p.id}}"><i
+                                                    class="fa fa-eye"></i></a></li>
+                                            <li th:onclick="'addProductToCart(\'' + ${p.id} + '\');'">
+                                                <a><i class="fa fa-shopping-cart"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <img
+                                            alt="Product photo"
+                                            th:src="@{'/api/products/resources/images/' +  ${p.thumbnailPhoto}}"/>
+                                </div>
+                                <div class="down-content">
+                                    <h4>[[${p.name}]]</h4>
+                                    <span>[[${#numbers.formatDecimal(p.listPrice, 0,
+											'COMMA', 0, 'POINT')}]] ₫</span>
+                                    <ul class="stars">
+                                        <th:block th:each="i: ${#numbers.sequence(1, p.rate)}">
+                                            <li><i class="fa fa-star"></i></li>
+                                        </th:block>
+                                    </ul>
+                                </div>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div th:replace="~{component/footer :: footer}">Footer</div>
+<script th:src="@{/assets/js/jquery-2.1.0.min.js}"
+        type="text/javascript"></script>
+<script th:src="@{/assets/js/popper.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/owl-carousel.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/accordions.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/datepicker.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/scrollreveal.min.js}"
+        type="text/javascript"></script>
+<script th:src="@{/assets/js/waypoints.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/jquery.counterup.min.js}"
+        type="text/javascript"></script>
+<script th:src="@{/assets/js/imgfix.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/slick.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/lightbox.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/isotope.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/quantity.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/custom.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/cart.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/comment.js}" type="text/javascript"></script>
+
+<script>
+    $(function () {
+        var selectedClass = "";
+        $("p").click(function () {
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+            $("#portfolio div").not("." + selectedClass).fadeOut();
+            setTimeout(function () {
+                $("." + selectedClass).fadeIn();
+                $("#portfolio").fadeTo(50, 1);
+            }, 500);
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="/img/icon_page.png" />
+		<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
+		<link rel="stylesheet" href="/style/style.css" />
+		<title>Admin Dashboard</title>
+	</head>
+	<body>
+		<div class="page-wrapper">
+			<input type="checkbox" name="" id="menu-toggle" />
+			<!--Side bar    -->
+			<div th:replace="~{component/sidebar :: sidebar}"></div>
+			<!-- Side bar end    -->
+			<div class="main-content">
+				<div th:replace="~{component/_header_admin :: _header_admin}"></div>
+				<main>
+					<div class="page-header">
+						<h1>Quản lí sản phẩm</h1>
+						<small>Chúc các bạn một ngày tốt lành!</small>
+					</div>
+					<div class="product-tag">
+						<div>
+							<a href="/web_shop/admin/products" class="btn btn-white">Sản Phẩm</a>
+						</div>
+						<div>
+							<a href="/web_shop/admin/products/brands" class="btn btn-choosed">Thương hiệu</a>
+						</div>
+						<div>
+							<a href="/web_shop/admin/products/categories" class="btn btn-white">Loại sản phẩm</a>
+						</div>
+					</div>
+					<div class="table-product-container">
+						<div class="card table-products-alls">
+							<div class="card-head">
+								<div class="product-head">
+									<div>
+										<h3>Thương hiệu sản phẩm</h3>
+										<small>Các thương/nhãn hiệu sản phẩm</small>
+										<div th:if="${message}" class="alert alert-success text-center">
+											[[${message}]]
+										</div>
+									</div>
+									<div>
+										<a href="/web_shop/admin/products/brands/new" class="btn bg-primary"><span class="las la-plus"></span>Thêm thương hiệu</a>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<table>
+									<thead>
+										<tr>
+											<th>Mã thương hiệu</th>
+											<th>Tên thương hiệu</th>
+											<th>Mô tả</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<th:block th:each="b : ${listBrand}">
+											<tr class="brand-item">
+												<td class="id-brand">[[${b.id}]]</td>
+												<td class="name-brand">
+													<h4>[[${b.name}]]</h4>
+												</td>
+												<td class="description-brand">
+													<h4>[[${b.description}]]</h4>
+												</td>
+												<td class="action-product">
+													<a th:href="@{${'/web_shop/admin/products/brands/update/' + b.id}}" class="btn btn-main bg-success">Sửa</a>
+													<a th:href="@{${'/web_shop/admin/products/brands/delete/' + b.id}}" class="btn btn-main bg-danger">Xóa</a>
+												</td>
+											</tr>
+										</th:block>
+									</tbody>
+								</table>
+							</div>
+							<div class="card-footer border-top">
+								<div class="number-product">
+									<h3>Đang hiển thị [[${amount}]] thương hiệu</h3>
+								</div>
+								<div class="paging">
+									<a class="btn btn-primary">1</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+	</body>
+</html>

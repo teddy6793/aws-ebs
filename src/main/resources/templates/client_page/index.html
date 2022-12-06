@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="_layout_client"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+          rel="stylesheet"/>
+    <title>Trang chủ</title>
+    <link rel="icon" th:href="@{/img/logo-icon-dark.png}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/css/templatemo-hexashop.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/owl-carousel.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/lightbox.css}"/>
+    <!-- UIkit CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/css/uikit.min.css" rel="stylesheet"/>
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit-icons.min.js"></script>
+    <style>
+        .label-title{
+            font-size: 2.5rem;
+            color: white
+        }
+        .label-content{
+            font-size: 1.1rem; color: white
+        }
+    </style>
+</head>
+<body>
+<div th:insert="~{component/header :: header}">Header</div>
+<div class="container-fluid" style="margin-top: 7rem;">
+    <div>
+        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: push; min-height: 300; max-height: 800;">
+            <ul class="uk-slideshow-items">
+                <li>
+                    <img th:src="@{/img/r.jpg}" alt="" uk-cover>
+                    <div class="uk-position-center uk-position-small uk-text-center">
+                        <h2 uk-slideshow-parallax="x: 100,-100" class="label-title">Rosé</h2>
+                        <p uk-slideshow-parallax="x: 200,-200" class="label-content">Đại sứ toàn cầu của Saint Laurent.</p>
+                    </div>
+                </li>
+                <li>
+                    <img th:src="@{/img/ji.jpg}" alt="" uk-cover>
+                    <div class="uk-position-center uk-position-small uk-text-center">
+                        <h2 uk-slideshow-parallax="x: 100,-100" class="label-title" >Jisoo </h2>
+                        <p uk-slideshow-parallax="x: 200,-200" class="label-content" >Đại sứ toàn cầu cho cả hai mảng thời trang và mỹ phẩm của Dior.</p>
+                    </div>
+                </li>
+                <li>
+                    <img th:src="@{/img/je.jpg}" alt="" uk-cover>
+                    <div class="uk-position-center uk-position-small uk-text-center">
+                        <h2 uk-slideshow-parallax="x: 100,-100" class="label-title">Jennie </h2>
+                        <p uk-slideshow-parallax="x: 200,-200" class="label-content">Đại sứ toàn cầu của Chanel.</p>
+                    </div>
+                </li>
+                <li>
+                    <img th:src="@{/img/li.jpg}" alt="" uk-cover>
+                    <div class="uk-position-center uk-position-small uk-text-center">
+                        <h2 uk-slideshow-parallax="x: 100,-100" class="label-title">Lisa </h2>
+                        <p uk-slideshow-parallax="x: 200,-200" class="label-content">Đại sứ toàn cầu của Celine.</p>
+                    </div>
+                </li>
+            </ul>
+            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+        </div>
+    </div>
+</div>
+<div class="main-banner" style="padding-top: 1rem;" id="top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="left-content">
+                    <div class="thumb">
+                        <div class="inner-content">
+                            <h4>Welcome, SPK01Shop</h4>
+                            <span>Kiến thức, kinh nghiệm &amp; trải nghiệm</span>
+                            <div class="main-border-button">
+                                <a th:href="@{/products}">Khám phá</a>
+                            </div>
+                        </div>
+                        <img alt="" th:src="@{/assets/images/left-banner-image.jpg}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="right-content">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="right-first-image">
+                                <div class="thumb">
+                                    <div class="inner-content">
+                                        <h4>Nữ giới</h4>
+                                        <span>Sản phẩm tốt nhất dành cho nữ</span>
+                                    </div>
+                                    <div class="hover-content">
+                                        <div class="inner">
+                                            <h4>Nữ giới</h4>
+                                            <p>Các loại sản phẩm dành cho nữ.</p>
+                                            <div class="main-border-button">
+                                                <a th:href="@{'/products/category/' + ${women.id}}">Khám phá</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img th:src="@{/assets/images/baner-right-image-01.jpg}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="right-first-image">
+                                <div class="thumb">
+                                    <div class="inner-content">
+                                        <h4>Nam giới</h4>
+                                        <span>Sản phẩm tốt nhất dành cho nam</span>
+                                    </div>
+                                    <div class="hover-content">
+                                        <div class="inner">
+                                            <h4>Nam giới</h4>
+                                            <p>Các loại sản phẩm dành cho nam.</p>
+                                            <div class="main-border-button">
+                                                <a th:href="@{'/products/category/' + ${man.id}}">Khám phá</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img th:src="@{/assets/images/baner-right-image-02.jpg}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="right-first-image">
+                                <div class="thumb">
+                                    <div class="inner-content">
+                                        <h4>Trẻ em</h4>
+                                        <span>Sản phẩm tốt nhất dành cho trẻ</span>
+                                    </div>
+                                    <div class="hover-content">
+                                        <div class="inner">
+                                            <h4>Trẻ em</h4>
+                                            <p>Các loại sản phẩm tốt nhất dành cho trẻ</p>
+                                            <div class="main-border-button">
+                                                <a th:href="@{'/products/category/' + ${kid.id}}">Khám phá</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img th:src="@{/assets/images/baner-right-image-03.jpg}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="right-first-image">
+                                <div class="thumb">
+                                    <div class="inner-content">
+                                        <h4>Phụ kiện</h4>
+                                        <span>Các phụ kiện đang trong xu hướng</span>
+                                    </div>
+                                    <div class="hover-content">
+                                        <div class="inner">
+                                            <h4>Phụ kiện</h4>
+                                            <p>Các phụ kiện tốt nhất dành cho giới trẻ</p>
+                                            <div class="main-border-button">
+                                                <a th:href="@{/products}">Khám phá</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img th:src="@{/assets/images/baner-right-image-04.jpg}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Main Banner Area End ***** -->
+
+<!-- ***** Men Area Starts ***** -->
+<section class="section" id="men" style="padding-top: 1rem;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-heading">
+                    <h2>Thời trang nam mới nhất</h2>
+                    <span>Chi tiết các sản phẩm dành cho nam vừa mới được lên sóng.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="men-item-carousel">
+                    <div class="owl-men-item owl-carousel">
+                        <th:block th:each="p : ${listProductMan}">
+                            <div class="item">
+                                <div class="thumb">
+                                    <div class="hover-content">
+                                        <ul>
+                                            <li>
+                                                <a th:href="@{'/product/single_product/' + ${p.id}}"><i
+                                                        class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li th:onclick="'addProductToCart(\'' + ${p.id} + '\');'">
+                                                <a><i class="fa fa-shopping-cart"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <img alt="Product photo"
+                                         th:src="@{'/api/products/resources/images/' +  ${p.thumbnailPhoto}}"/>
+                                </div>
+                                <div class="down-content">
+                                    <a th:href="@{'/product/single_product/' + ${p.id}}"><h4>[[${p.name}]]</h4></a>
+                                    <span>[[${#numbers.formatDecimal(p.listPrice, 0, 'COMMA', 0, 'POINT')}]] ₫</span>
+                                    <ul class="stars">
+                                        <th:block th:each="i: ${#numbers.sequence(1, p.rate)}">
+                                            <li><i class="fa fa-star"></i></li>
+                                        </th:block>
+                                    </ul>
+                                </div>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Men Area Ends ***** -->
+
+<!-- ***** Women Area Starts ***** -->
+<section class="section" id="women" style="padding-top: 1rem;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-heading">
+                    <h2>Thời trang nữ mới nhất</h2>
+                    <span>Chi tiết các sản phẩm dành cho nữ vừa mới được lên sóng.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="women-item-carousel">
+                    <div class="owl-women-item owl-carousel">
+                        <th:block th:each="p : ${listProductWomen}">
+                            <div class="item">
+                                <div class="thumb">
+                                    <div class="hover-content">
+                                        <ul>
+                                            <li>
+                                                <a th:href="@{'/product/single_product/' + ${p.id}}"><i
+                                                        class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li th:onclick="'addProductToCart(\'' + ${p.id} + '\');'">
+                                                <a><i class="fa fa-shopping-cart"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <img alt="Product photo"
+                                         th:src="@{'/api/products/resources/images/' +  ${p.thumbnailPhoto}}"/>
+                                </div>
+                                <div class="down-content">
+                                    <a th:href="@{'/product/single_product/' + ${p.id}}"><h4>[[${p.name}]]</h4></a>
+                                    <span>[[${#numbers.formatDecimal(p.listPrice, 0, 'COMMA', 0, 'POINT')}]] ₫</span>
+                                    <ul class="stars">
+                                        <th:block th:each="i: ${#numbers.sequence(1, p.rate)}">
+                                            <li><i class="fa fa-star"></i></li>
+                                        </th:block>
+                                    </ul>
+                                </div>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Women Area Ends ***** -->
+
+<!-- ***** Kids Area Starts ***** -->
+<section class="section" id="kids" style="padding-top: 1rem;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-heading">
+                    <h2>Thời trang cho trẻ mới nhất</h2>
+                    <span>Chi tiết các sản phẩm dành cho trẻ vừa mới được lên sóng.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="kid-item-carousel">
+                    <div class="owl-kid-item owl-carousel">
+                        <th:block th:each="p : ${listProductKid}">
+                            <div class="item">
+                                <div class="thumb">
+                                    <div class="hover-content">
+                                        <ul>
+                                            <li>
+                                                <a th:href="@{'/product/single_product/' + ${p.id}}"><i
+                                                        class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li th:onclick="'addProductToCart(\'' + ${p.id} + '\');'">
+                                                <a><i class="fa fa-shopping-cart"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <img alt="Product photo"
+                                         th:src="@{'/api/products/resources/images/' + ${p.thumbnailPhoto}}"/>
+                                </div>
+                                <div class="down-content">
+                                    <a th:href="@{'/product/single_product/' + ${p.id}}"><h4>[[${p.name}]]</h4></a>
+                                    <span>[[${#numbers.formatDecimal(p.listPrice, 0, 'COMMA', 0, 'POINT')}]] ₫</span>
+                                    <ul class="stars">
+                                        <th:block th:each="i: ${#numbers.sequence(1, p.rate)}">
+                                            <li><i class="fa fa-star"></i></li>
+                                        </th:block>
+                                    </ul>
+                                </div>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Kids Area Ends ***** -->
+
+<!-- ***** Explore Area Starts ***** -->
+<section class="section" id="explore">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="left-content">
+                    <h2>Khám phá sản phẩm của chúng tôi</h2>
+                    <span
+                    >Chúng tôi luôn chào đón bạn đến với SPK01Shop, với đội ngũ nhân viên tận tình, chu đáo, luôn luôn lắng nghe, luôn
+								luôn thấu hiểu.</span
+                    >
+                    <div class="quote">
+                        <i class="fa fa-quote-left"></i>
+                        <p>Qua năm tháng, tôi thấu hiểu rằng điều quan trọng của một bộ trang phục nằm ở chính người
+                            sẽ mặc nó.</p>
+                    </div>
+                    <p>
+                        Với đội ngũ nhân viên giàu kinh nghiệm và nhiều năm làm việc trong lĩnh vực thời trang, rất
+                        mong sẽ đáp ứng được nhu
+                        cầu của quý khách.
+                    </p>
+                    <p>Xin chân thành cảm ơn quý quý khách đã dành thời gian cho SPK01Shop.</p>
+                    <div class="main-border-button">
+                        <a th:href="@{/products}">Khám phá</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="right-content">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="leather">
+                                <h4>Túi xách</h4>
+                                <span>Xu hướng</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="first-image">
+                                <img alt="" th:src="@{/assets/images/explore-image-01.jpg}"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="second-image">
+                                <img alt="" th:src="@{/assets/images/explore-image-02.jpg}"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="types">
+                                <h4>Đa dạng</h4>
+                                <span>50+ sản phẩm</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Explore Area Ends ***** -->
+
+<!-- ***** Social Area Starts ***** -->
+<section class="section" id="social">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading">
+                    <h2>Mạng xã hội</h2>
+                    <span>Hãy liên hệ trực tiếp với chúng tôi qua các nền tảng mạng xã hội.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row images">
+            <div class="col-2">
+                <div class="thumb">
+                    <div class="icon">
+                        <a href="https://www.instagram.com/explore/tags/fashion/" target="_blank">
+                            <h6>Fashion</h6>
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </div>
+                    <img alt="" th:src="@{/assets/images/instagram-01.jpg}"/>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="thumb">
+                    <div class="icon">
+                        <a href="https://www.instagram.com/explore/tags/bag/" target="_blank">
+                            <h6>New</h6>
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </div>
+                    <img alt="" th:src="@{/assets/images/instagram-02.jpg}"/>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="thumb">
+                    <div class="icon">
+                        <a href="https://www.instagram.com/explore/tags/brand/" target="_blank">
+                            <h6>Brand</h6>
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </div>
+                    <img alt="" th:src="@{/assets/images/instagram-03.jpg}"/>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="thumb">
+                    <div class="icon">
+                        <a href="https://www.instagram.com/explore/tags/makeup/" target="_blank">
+                            <h6>Makeup</h6>
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </div>
+                    <img alt="" th:src="@{/assets/images/instagram-04.jpg}"/>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="thumb">
+                    <div class="icon">
+                        <a href="https://www.instagram.com/explore/tags/leather/" target="_blank">
+                            <h6>Leather</h6>
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </div>
+                    <img alt="" th:src="@{/assets/images/instagram-05.jpg}"/>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="thumb">
+                    <div class="icon">
+                        <a href="https://www.instagram.com/explore/tags/bag/" target="_blank">
+                            <h6>Bag</h6>
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </div>
+                    <img alt="" th:src="@{/assets/images/instagram-06.jpg}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Social Area Ends ***** -->
+
+<!-- ***** Subscribe Area Starts ***** -->
+<div class="subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="section-heading">
+                    <h2>Đăng ký nhận thông báo về sản phẩm</h2>
+                    <span>Để không bỏ lỡ về các chương trình giảm giá đặc biệt.</span>
+                </div>
+                <form action="" id="subscribe" method="get">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <fieldset>
+                                <input id="name" name="name" placeholder="Họ và tên" required="" type="text"/>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-5">
+                            <fieldset>
+                                <input id="email" name="email" pattern="[^ @]*@[^ @]*" placeholder="Địa chỉ E-mail"
+                                       required="" type="text"/>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-2">
+                            <fieldset>
+                                <button class="main-dark-button" id="form-submit" type="submit"><i
+                                        class="fa fa-paper-plane"></i></button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-6">
+                        <ul>
+                            <li>Địa chỉ:<br/><span>Số 01 Võ Văn Ngân, Thành phố Thủ Đức</span></li>
+                            <li>Liên hệ:<br/><span>0388 891 635</span></li>
+                            <li>Trụ sở chính:<br/><span>484 Lê Văn Việt, Thành phố Thủ Đức</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <ul>
+                            <li>Giờ mở cửa:<br/><span>07:30 AM - 9:30 PM Hằng ngày</span></li>
+                            <li>Email:<br/><span>hoadaknong101@gmail.com</span></li>
+                            <li>
+                                Mạng xã hội:<br/><span
+                            ><a href="https://www.facebook.com/hoaffffff/">Facebook</a>, <a href="https://www.instagram.com/_hoaffffff/">Instagram</a>, <a href="#">Behance</a>,
+											<a href="#">Linkedin</a></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{component/footer :: footer}">Footer</div>
+<!-- jQuery -->
+<script th:src="@{/assets/js/jquery-2.1.0.min.js}" type="text/javascript"></script>
+
+<!-- Bootstrap -->
+<script th:src="@{/assets/js/popper.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}" type="text/javascript"></script>
+
+<!-- Plugins -->
+<script th:src="@{/assets/js/owl-carousel.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/accordions.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/datepicker.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/scrollreveal.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/waypoints.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/jquery.counterup.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/imgfix.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/slick.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/lightbox.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/isotope.js}" type="text/javascript"></script>
+
+<!-- Global Init -->
+<script th:src="@{/assets/js/custom.js}" type="text/javascript"></script>
+</body>
+</html>

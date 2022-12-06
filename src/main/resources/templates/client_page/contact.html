@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+          rel="stylesheet"/>
+    <title>Liên hệ</title>
+    <link rel="icon" th:href="@{/img/logo-icon-dark.png}"/>    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/font-awesome.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/templatemo-hexashop.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/owl-carousel.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/lightbox.css}" />
+    <!-- UIkit CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/css/uikit.min.css" rel="stylesheet"/>
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit-icons.min.js"></script>
+</head>
+<body>
+<div id="layer"></div>
+<div th:insert="~{component/_header :: header}">Header</div>
+<!-- ***** Main Banner Area Start ***** -->
+<div class="page-heading about-page-heading" id="top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="inner-content">
+                    <h2>Liên hệ</h2>
+                    <span>Thông tin liên hệ chi tiết</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Main Banner Area End ***** -->
+
+<!-- ***** Contact Area Starts ***** -->
+<div class="contact-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div id="map">
+                    <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4765139276446!2d106.7555778!3d10.851315399999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527bd80c66b4f%3A0x1243c8a70dc5d2e0!2zMSDEkC4gVsO1IFbEg24gTmfDom4sIExpbmggQ2hp4buDdSwgVGjhu6cgxJDhu6ljLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1651492925514!5m2!1svi!2s"
+                            width="100%"
+                            height="400px"
+                            frameborder="0"
+                            style="border: 0"
+                            allowfullscreen
+                    ></iframe>
+                    <!-- You can simply copy and paste "Embed a map" code from Google Maps for any location. -->
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="section-heading">
+                    <h2>Có bất cứ ý kiến phản hồi hãy PM với chúng tôi</h2>
+                    <span>Bạn hãy điền form dưới đây, khi nhận được phản hồi, chủ tiệm sẽ liên hệ quý khách</span>
+                </div>
+                <form id="contact" action="" method="post">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <fieldset>
+                                <input name="name" type="text" id="name" placeholder="Your name" required="" />
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset>
+                                <input name="email" type="text" id="email" placeholder="Your email" required="" />
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <textarea name="message" rows="6" id="message" placeholder="Your message" required=""></textarea>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <button type="submit" id="form-submit" class="main-dark-button"><i class="fa fa-paper-plane"></i></button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Contact Area Ends ***** -->
+
+<!-- ***** Subscribe Area Starts ***** -->
+<div class="subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="section-heading">
+                    <h2>Hiện tại bên cửa hàng đang có chương trình khuyến mại giảm giá 50%</h2>
+                    <span>Để không bỏ lỡ về các chương trình giảm giá đặc biệt, hãy săn cho mình món đồ thích hợp thôi nào!</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-6">
+                        <ul>
+                            <li>Địa chỉ:<br/><span>Số 01 Võ Văn Ngân, Thành phố Thủ Đức</span></li>
+                            <li>Liên hệ:<br/><span>0388 891 635</span></li>
+                            <li>Trụ sở chính:<br/><span>484 Lê Văn Việt, Phường Tăng Nhơn Phú A, Thành phố Thủ Đức</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <ul>
+                            <li>Giờ mở cửa:<br/><span>07:30 AM - 9:30 PM Hằng ngày</span></li>
+                            <li>Email:<br/><span>anhtien@gmail.com</span></li>
+                            <li>
+                                Mạng xã hội:<br/><span
+                            ><a href="#">Facebook</a>, <a href="#">Instagram</a>, <a href="#">Behance</a>,
+											<a href="#">Linkedin</a></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Subscribe Area Ends ***** -->
+<!-- ***** Products Area Ends ***** -->
+<div th:replace="~{component/footer :: footer}">Footer</div>
+<!-- jQuery -->
+<script th:src="@{/assets/js/jquery-2.1.0.min.js}" type="text/javascript"></script>
+
+<!-- Bootstrap -->
+<script th:src="@{/assets/js/popper.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}" type="text/javascript"></script>
+
+<!-- Plugins -->
+<script th:src="@{/assets/js/owl-carousel.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/accordions.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/datepicker.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/scrollreveal.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/waypoints.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/jquery.counterup.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/imgfix.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/slick.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/lightbox.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/isotope.js}" type="text/javascript"></script>
+
+<!-- Global Init -->
+<script th:src="@{/assets/js/custom.js}" type="text/javascript"></script>
+<script>
+    $(function () {
+        var selectedClass = "";
+        $("p").click(function () {
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+            $("#portfolio div")
+                .not("." + selectedClass)
+                .fadeOut();
+            setTimeout(function () {
+                $("." + selectedClass).fadeIn();
+                $("#portfolio").fadeTo(50, 1);
+            }, 500);
+        });
+    });
+</script>
+</body>
+</html>

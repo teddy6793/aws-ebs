@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          name="viewport"/>
+    <link
+            href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+            rel="stylesheet"/>
+    <title>Trang chủ</title>
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}"
+          type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.css}"
+          type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/css/templatemo-hexashop.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/owl-carousel.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/lightbox.css}"/>
+</head>
+<body>
+<div id="layer"></div>
+<div th:insert="~{component/_header :: header}">Header</div>
+<!-- ***** Main Banner Area Start ***** -->
+<div class="page-heading about-page-heading" id="top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="inner-content">
+                    <h2>Không tìm thấy giỏ hàng</h2>
+                    <span>Giỏ hàng hiện tại không có sản phẩm để tiến hành thanh toán</span><br>
+                    <span>Quý khách vui lòng thử lại sau</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{component/footer :: footer}">Footer</div>
+<!-- jQuery -->
+<script th:src="@{/assets/js/jquery-2.1.0.min.js}"
+        type="text/javascript"></script>
+
+<!-- Bootstrap -->
+<script th:src="@{/assets/js/popper.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}" type="text/javascript"></script>
+
+<!-- Plugins -->
+<script th:src="@{/assets/js/owl-carousel.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/accordions.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/datepicker.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/scrollreveal.min.js}"
+        type="text/javascript"></script>
+<script th:src="@{/assets/js/waypoints.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/jquery.counterup.min.js}"
+        type="text/javascript"></script>
+<script th:src="@{/assets/js/imgfix.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/slick.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/lightbox.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/isotope.js}" type="text/javascript"></script>
+
+<!-- Global Init -->
+<script th:src="@{/assets/js/custom.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/quantity-cart.js}" type="text/javascript"></script>
+<script>
+    $(function () {
+        var selectedClass = "";
+        $("p").click(function () {
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+            $("#portfolio div").not("." + selectedClass).fadeOut();
+            setTimeout(function () {
+                $("." + selectedClass).fadeIn();
+                $("#portfolio").fadeTo(50, 1);
+            }, 500);
+        });
+    });
+
+    function changePassword() {
+        document.getElementById("modal-form").style.display = "block"
+        document.getElementById("layer").style.display = "block";
+    }
+
+    function cancelChange() {
+        document.getElementById("modal-form").style.display = "none";
+        document.getElementById("layer").style.display = "none";
+    }
+
+    function deleteCartItem(orderId, productId) {
+        let message = "Bạn có muốn xóa sản phẩm này không?";
+        if (confirm(message) == true) {
+            $.ajax({
+                url: "/cart/delete_product/" + orderId + "/" + productId,
+                type: "get",
+                success: function (response) {
+                    window.location = "/order/" + response
+                },
+                error: function (xhr) {
+
+                },
+            });
+        }
+    }
+    function checkout(id){
+        window.location.href = "/checkout_page/" + id;
+    }
+
+    function orderDetails(id){
+        window.location.href = "/cart/order_details/" + id;
+    }
+</script>
+</body>
+</html>

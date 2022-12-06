@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div th:fragment="header">
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a th:href="@{/index}" class="logo">
+                            <img th:src="@{/assets/images/logo.png}" />
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="#top" class="active">Trang chủ</a></li>
+                            <li class="scroll-to-section"><a href="#men">Nam giới</a></li>
+                            <li class="scroll-to-section"><a href="#women">Nữ giới</a></li>
+                            <li class="scroll-to-section"><a href="#kids">Trẻ em</a></li>
+                            <li ><a th:href="@{/products}">Sản phẩm</a></li>
+                            <li class="submenu">
+                                <a href="javascript:;">Trang</a>
+                                <ul>
+                                    <div th:if="${session.roleId == 3}">
+                                        <li><a th:href="@{/about}">Giới thiệu</a></li>
+                                        <li><a th:href="@{/products}">Sản phẩm</a></li>
+                                        <li><a th:href="@{/contact}">Liên hệ</a></li>
+                                    </div>
+                                    <div th:if="${session.roleId == 1 or session.roleId == 2}">
+                                        <li><a th:href="@{/about}">Giới thiệu</a></li>
+                                        <li><a th:href="@{/web_shop/admin/}">Trang quản trị</a></li>
+                                        <li><a th:href="@{/products}">Sản phẩm</a></li>
+                                        <li><a th:href="@{/contact}">Liên hệ</a></li>
+                                    </div>
+                                    <div th:unless="${session.roleId == 3 or session.roleId == 1 or session.roleId == 2}">
+                                        <li><a th:href="@{/about}">Giới thiệu</a></li>
+                                        <li><a th:href="@{/products}">Sản phẩm</a></li>
+                                        <li><a th:href="@{/contact}">Liên hệ</a></li>
+                                    </div>
+                                </ul>
+                            </li>
+                            <li class="submenu">
+                                <a href="javascript:;">Tài khoản</a>
+                                <ul>
+                                    <!-- Đã đăng nhập -->
+                                    <div th:if="${session.userId != null}">
+                                        <li><a th:href="@{'/customer/' + ${session.userId}}">Tài khoản của tôi</a></li>
+                                        <li><a th:href="@{'/cart/order_list/' + ${session.userId}}">Đơn hàng</a></li>
+                                        <li><a th:href="@{/sign_out}">Đăng xuất</a></li>
+                                    </div>
+                                    <!-- Chưa đăng nhập -->
+                                    <div th:if="${session.userId == null}">
+                                        <li><a th:href="@{/sign_in_sign_up}">Đăng nhập</a></li>
+                                        <li><a th:href="@{/sign_in_sign_up}">Đăng ký</a></li>
+                                    </div>
+                                </ul>
+                            </li>
+                            <li th:if="${session.userId != null}" class="cart">
+                                <a th:href="@{'/order/' + ${session.userId}}"><img width="25" height="25" src="/assets/images/cart_icon.png" /></a>
+                            </li>
+                        </ul>
+                        <a class="menu-trigger">
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+<script>
+    $(function () {
+        var selectedClass = "";
+        $("p").click(function () {
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+            $("#portfolio div")
+                .not("." + selectedClass)
+                .fadeOut();
+            setTimeout(function () {
+                $("." + selectedClass).fadeIn();
+                $("#portfolio").fadeTo(50, 1);
+            }, 500);
+        });
+    });
+
+    function changePassword() {
+        document.getElementById("modal-form").style.display = "block"
+        document.getElementById("layer").style.display = "block";
+    }
+    function cancelChange(){
+        document.getElementById("modal-form").style.display = "none";
+        document.getElementById("layer").style.display = "none";
+    }
+</script>
+</body>
+</html>
